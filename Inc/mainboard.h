@@ -19,7 +19,7 @@
 extern uint8_t runStep;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
-void UART_ReceiveDataFunction(void);
+//void UART_ReceiveDataFunction(void);
 
 
 #endif 

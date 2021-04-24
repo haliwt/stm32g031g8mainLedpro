@@ -49,7 +49,7 @@ void MX_TIM1_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = mainled.pwmDutyCycle_ch12 ;//80; //pwm duty cycle 80%
+  sConfigOC.Pulse = 50;//mainled.pwmDutyCycle_ch12 ;//80; //pwm duty cycle 80%
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -120,7 +120,7 @@ void MX_TIM2_Init(void)
   }
   //PA1 TIM2_CH2
   sConfigOC_1.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC_1.Pulse = mainled.pwmDutyCycle_ch22;//80;  //pwm duty cycle 80%
+  sConfigOC_1.Pulse = 50;//mainled.pwmDutyCycle_ch22;//80;  //pwm duty cycle 80%
   sConfigOC_1.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC_1.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC_1, TIM_CHANNEL_2) != HAL_OK)// TIM_CHANNEL_1 to TIM_CHANNEL_2 PA1 ---> TIM2_CH2
