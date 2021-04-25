@@ -130,8 +130,11 @@ void UART_ReceiveDataFunction(void)
 		crcCheck ^= aRxBuffer[0];
 		paraIndex++;
 		cmdSize--;
+	//	HAL_UART_Transmit(&huart1,inputCmd,1,0);
 		if(cmdSize==0)
 		{
+			HAL_UART_Transmit(&huart1,&inputCmd[1],1,2);
+			HAL_UART_Transmit(&huart1,&inputCmd[2],1,2);
 			decodeFlag=1; //receive UART data
 			state=STATE_PREAMBLE1;
 		}

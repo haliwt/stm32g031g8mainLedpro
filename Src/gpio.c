@@ -47,7 +47,7 @@ void mainMX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
+  /*Configure GPIOC pin Output Level */
   HAL_GPIO_WritePin(GPIOC, LEDB8_Pin|LEDBCUT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */

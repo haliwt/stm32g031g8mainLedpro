@@ -10,8 +10,8 @@ static uint8_t level;
 
 static void setLevel_PWMA(uint8_t level);
 static void setLevel_PWMB(uint8_t level);
-static void TIM_SetCompare2_A(TIM_HandleTypeDef* TIMx, uint16_t Compare2);//PB3->TIM1_CH2-AF1
-static void TIM_SetCompare2_B(TIM_HandleTypeDef* TIMx, uint16_t Compare2); //PA1-->TIM2_CH2
+//static void TIM_SetCompare2_A(TIM_HandleTypeDef* TIMx, uint16_t Compare2);//PB3->TIM1_CH2-AF1
+//static void TIM_SetCompare2_B(TIM_HandleTypeDef* TIMx, uint16_t Compare2); //PA1-->TIM2_CH2
 
 
 
@@ -34,7 +34,11 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
               mainTurnOff_TheFirstLedA();
 
    }
-
+    level = 0;
+	if(ledNum < 8)
+	    setLevel_PWMA(level);
+	if(ledNum> 7 && ledNum < 16)
+	    setLevel_PWMB(level);
    if(onOff){
 
 	   lastOnLed = ledNum;
@@ -42,7 +46,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 	   level = LEVEL_DEFAULT;
 	   switch(ledNum){
 	   	
-			case 0:
+			case 0://PA2
 			    mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
                 mainTurnOff_TheFirstLedA();
@@ -54,7 +58,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
                 
                 break;
 
-            case 1:
+            case 1://PA3
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -64,7 +68,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				 HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;
                 break;
 
-            case 2:
+            case 2: //PA4
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -75,7 +79,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				 HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;
                 break;
 
-            case 3:
+            case 3://PA5
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -86,7 +90,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				 HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;
                 break;
 
-            case 4:
+            case 4: //PA6
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -96,7 +100,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				 HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;  //2.the second turn on Enable
                 break;
 
-            case 5:
+            case 5://PA7
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -106,7 +110,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				 HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ; //2.the second turn on Enable
                 break;
 
-            case 6:
+            case 6: //PB0
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -116,7 +120,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;//2.the second turn on Enable
                 break;
 
-            case 7:
+            case 7://PB1
 				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
@@ -125,95 +129,98 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
                 HAL_GPIO_WritePin(LEDA8_GPIO_Port, LEDA8_Pin, GPIO_PIN_SET);
 				HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;  //2.TIM2_CH2
             break;
+			
 		   //LEDB -The second group 
-		    case 8:
+		    case 8://PA11
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 				//1.turn on LEDB1 =1
                 HAL_GPIO_WritePin(LEDB1_GPIO_Port, LEDB1_Pin, GPIO_PIN_SET);
+			     setLevel_PWMB(level);
 				 HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
                 break;
 
-            case 9:
+            case 9://PA12
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 
 				//turn on LEDB1
                 HAL_GPIO_WritePin(LEDB2_GPIO_Port, LEDB2_Pin, GPIO_PIN_SET);
+				setLevel_PWMB(level);
 				 HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2); //TIM1_CH2
                 break;
 
-			case 10:
+			case 0x0A: //PA15
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
+		
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 							  //turn on LEDB3=1
                 HAL_GPIO_WritePin(LEDB3_GPIO_Port, LEDB3_Pin, GPIO_PIN_SET);
+				 setLevel_PWMB(level);
 				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
                 break;
 
-            case 11:
+            case 0x0B:
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
+			
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 				//turn on LEDB4=1
                 HAL_GPIO_WritePin(LEDB4_GPIO_Port, LEDB4_Pin, GPIO_PIN_SET);
+			   setLevel_PWMB(level);
                  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 			break;
 
-            case 12:
+            case 0X0C:
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
+			
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 				//turn on LEDB5=1
                 HAL_GPIO_WritePin(LEDB5_GPIO_Port, LEDB5_Pin, GPIO_PIN_SET);
+			     setLevel_PWMB(level);
                 HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 			break;
 
-            case 13:
+            case 0X0D:
                 // HAL_GPIO_WritePin(LEDB6_GPIO_Port,LEDB6_Pin, GPIO_PIN_SET);
                 break;
 
-            case 14:
+            case 0X0E:
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
+			
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 				//turn on LEDB7 =1
                 HAL_GPIO_WritePin(LEDB7_GPIO_Port, LEDB7_Pin, GPIO_PIN_SET);
+				 setLevel_PWMB(level);
                  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 			break;
 
-            case 15:
+            case 0X0F:
 				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
-				HAL_Delay(100);
+				
 				mainTurnOff_TheSecondLedB();
-				HAL_Delay(100);
+				HAL_Delay(20);
 				//turn on LEDB8 =1
                 HAL_GPIO_WritePin(LEDB8_GPIO_Port, LEDB8_Pin, GPIO_PIN_SET);
+				 setLevel_PWMB(level);
                 HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 				break;
 	   
            
 	   }
-	   if(ledNum < 8)
-	     setLevel_PWMA(level);
-	   if(ledNum> 7 && ledNum < 16)
-	      setLevel_PWMB(level);
+	  
    }
 }
 
@@ -523,7 +530,7 @@ void mainTurnOff_TheFirstLedA(void)
 {
      //turn off LEDA LED
 	   HAL_TIM_PWM_Stop(&htim2,TIM_CHANNEL_2) ; //HAL_GPIO_WritePin(LEDAPWM_GPIO_Port, LEDAPWM_Pin, GPIO_PIN_RESET);//TIM2_CH2
-	   HAL_Delay(200);
+	   HAL_Delay(20);
 	   HAL_GPIO_WritePin(LEDA1_GPIO_Port, LEDA1_Pin | LEDA2_Pin | LEDA3_Pin | LEDA4_Pin | LEDA5_Pin | LEDA6_Pin, GPIO_PIN_RESET);
        HAL_GPIO_WritePin(LEDA7_GPIO_Port, LEDA7_Pin | LEDA8_Pin, GPIO_PIN_RESET);
 
@@ -540,7 +547,7 @@ void mainTurnOff_TheSecondLedB(void)
 {
 		 //turn off LEDB LED
 		 HAL_TIM_PWM_Stop(&htim1,TIM_CHANNEL_2);//TIM1_CH2 --PB3//HAL_GPIO_WritePin(LEDBPWM_GPIO_Port, LEDBPWM_Pin, GPIO_PIN_RESET);
-		 HAL_Delay(200);
+		 HAL_Delay(20);
 		 HAL_GPIO_WritePin(LEDB1_GPIO_Port, LEDB1_Pin | LEDB2_Pin | LEDB3_Pin, GPIO_PIN_RESET);
 		 HAL_GPIO_WritePin(LEDB4_GPIO_Port, LEDB4_Pin | LEDB5_Pin | LEDB7_Pin, GPIO_PIN_RESET);
 		 HAL_GPIO_WritePin(LEDB8_GPIO_Port, LEDB8_Pin, GPIO_PIN_RESET);
@@ -574,16 +581,14 @@ static uint8_t BCC_CHECK(void)
 	*
 ******************************************************************************/
 
-static void setLevel_PWMA(uint8_t levelval)
+static void setLevel_PWMB(uint8_t levelval)
 {
-	uint16_t pwmValue;
+//	if(levelval>LEVEL_MAX) levelval=LEVEL_MAX;
+	     mainled.pwmDutyCycle_ch12=(levelval)*LEVEL_PWM_STEP;
 
-	if(levelval>LEVEL_MAX) levelval=LEVEL_MAX;
-	     pwmValue=(levelval)*LEVEL_PWM_STEP;
-
-	if(pwmValue>LEVEL_PWM_MAX) pwmValue=LEVEL_PWM_MAX;
-	    TIM_SetCompare2_A(&htim1,pwmValue);
-
+	if(mainled.pwmDutyCycle_ch12>LEVEL_PWM_MAX)mainled.pwmDutyCycle_ch12=LEVEL_PWM_MAX;
+	   // TIM_SetCompare2_A(&htim1,mainled.pwmDutyCycle_ch12);
+	 MX_TIM1_Init();
 }
 /*************************************************************************
  	*
@@ -594,7 +599,7 @@ static void setLevel_PWMA(uint8_t levelval)
 	*
 ******************************************************************************/
 
-static void setLevel_PWMB(uint8_t levelval)
+static void setLevel_PWMA(uint8_t levelval)
 {
 	uint16_t pwmValue;
 
@@ -604,24 +609,6 @@ static void setLevel_PWMB(uint8_t levelval)
 	if(pwmValue>LEVEL_PWM_MAX) pwmValue=LEVEL_PWM_MAX;
 	TIM_SetCompare2_B(&htim2,pwmValue);
 
-}
-/*************************************************************************
- 	*
-	*Function Name:
-	*Function : 
-	*Input Ref: NO
-	*Output Ref:No
-	*
-******************************************************************************/
-
-static void TIM_SetCompare2_A(TIM_HandleTypeDef* TIMx, uint16_t Compare2)
-{
-	TIMx->Instance->CCR2 = Compare2;
-}
-
-static void TIM_SetCompare2_B(TIM_HandleTypeDef* TIMx, uint16_t Compare2)
-{
-	TIMx->Instance->CCR2 = Compare2;
 }
 /*************************************************************************
  	*
