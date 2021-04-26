@@ -36,7 +36,7 @@
 #define LEDAPWM_GPIO_Port 			GPIOA
 
 #define LEDA1_Pin 					GPIO_PIN_2  //PA2
-#define LEDA1_GPIO_Port 			GPIOA
+#define LEDA1_GPIO_Port 		GPIOA
 
 #define LEDA2_Pin 					GPIO_PIN_3    //PA3
 #define LEDA2_GPIO_Port 			GPIOA
