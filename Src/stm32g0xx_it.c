@@ -163,12 +163,8 @@ void USART1_IRQHandler(void)
 
 //}
 
-void TIM3_IRQHandler(void)
-{
 
-   HAL_TIM_IRQHandler(&htim3);
-	 
-}
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

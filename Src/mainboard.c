@@ -53,7 +53,7 @@ static void RunCmd(void)
 	case 'S':	//	select led  hex:53
 		LedOnOff(((inputCmd[1]-0x30)*10+inputCmd[2]-0x30),1);//ledCtrl(((inputCmd[1]-0x30)*10+inputCmd[2]-0x30),1);
 		break;
-	case 'C':
+	case 'C': // 0x43
 		//turnOffAll();
 		 mainTurnOff_TheSecondLedB();
          mainTurnOff_TheFirstLedA();

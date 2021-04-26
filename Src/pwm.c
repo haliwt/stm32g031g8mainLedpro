@@ -5,7 +5,7 @@
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim3;
+
 
 /*************************************************************************************
 *	*
@@ -120,7 +120,7 @@ void MX_TIM2_Init(void)
   }
   //PA1 TIM2_CH2
   sConfigOC_1.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC_1.Pulse = 0;//50;//mainled.pwmDutyCycle_ch22;//80;  //pwm duty cycle 80%
+  sConfigOC_1.Pulse = mainled.pwmDutyCycle_ch22;//80;  //pwm duty cycle 80%
   sConfigOC_1.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC_1.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC_1, TIM_CHANNEL_2) != HAL_OK)// TIM_CHANNEL_1 to TIM_CHANNEL_2 PA1 ---> TIM2_CH2
@@ -200,7 +200,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
 
   /* USER CODE END TIM1_MspPostInit 1 */
   }
-  else if(timHandle->Instance==TIM2)// PA15 -TIM2_CH1-ETR PA2->TIM2_CH3
+  else if(timHandle->Instance==TIM2)// 
   {
   
    /* USER CODE BEGIN TIM3_MspPostInit 0 */
@@ -261,12 +261,5 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 
   /* USER CODE END TIM3_MspDeInit 1 */
   }
-   else if(tim_baseHandle->Instance==TIM3)// TIM3 to TIM2
-   {
-		 __HAL_RCC_TIM3_CLK_DISABLE();//__HAL_RCC_TIM3_CLK_DISABLE();
-
-    /* TIM3 interrupt Deinit */
-      HAL_NVIC_DisableIRQ(TIM3_IRQn);//HAL_NVIC_DisableIRQ(TIM3_IRQn);
-   
-   }
+  
 } 
