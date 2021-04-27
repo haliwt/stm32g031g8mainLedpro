@@ -51,6 +51,8 @@ static void RunCmd(void)
 	switch(cmdType)
 	{
 	case 'S':	//	select led  hex:53
+	    mainled.led_by_a = 0;
+		mainled.led_by_b = 0;
 		LedOnOff(((inputCmd[1]-0x30)*10+inputCmd[2]-0x30),1);//ledCtrl(((inputCmd[1]-0x30)*10+inputCmd[2]-0x30),1);
 		break;
 	case 'C': // 0x43
@@ -81,7 +83,7 @@ void UART_ReceiveDataFunction(void)
 	switch(state)
 	{
 	case STATE_PREAMBLE1:
-		if(aRxBuffer[0]=='M') // hex:4D
+		if(aRxBuffer[0]=='M' || aRxBuffer[0]=='Z') //0x4D or 0X56
 			state=STATE_PREAMBLE2;
 		break;
 	case STATE_PREAMBLE2:
