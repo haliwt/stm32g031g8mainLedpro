@@ -346,7 +346,7 @@ void mainTurnOff_TheSecondLedB(void)
 
 static void setLevel_PWMB(uint8_t levelval)
 {
-     mainled.pwmDutyCycle_ch12=(levelval)*LEVEL_PWM_STEP;
+    if(mainled.pwmDutyCycle_ch12 <LEVEL_MIN) mainled.pwmDutyCycle_ch12 =LEVEL_MIN;
 
 	if(mainled.pwmDutyCycle_ch12>LEVEL_PWM_MAX)mainled.pwmDutyCycle_ch12=LEVEL_PWM_MAX;
 
@@ -365,9 +365,9 @@ static void setLevel_PWMB(uint8_t levelval)
 static void setLevel_PWMA(uint8_t levelval)
 {
 	
-     mainled.pwmDutyCycle_ch22=(levelval)*LEVEL_PWM_STEP;
-
-	if(mainled.pwmDutyCycle_ch22>LEVEL_PWM_MAX) mainled.pwmDutyCycle_ch22=LEVEL_PWM_MAX;
+   if(mainled.pwmDutyCycle_ch22 <LEVEL_MIN) mainled.pwmDutyCycle_ch22=LEVEL_MIN;
+   if(mainled.pwmDutyCycle_ch22>LEVEL_PWM_MAX) mainled.pwmDutyCycle_ch22=LEVEL_PWM_MAX;
+	
 	MX_TIM2_Init();
 	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;  //2.the second turn on Enable
 
@@ -393,7 +393,7 @@ void changeBrightness(uint8_t dir)
 			}
 			else	// adj -
 			{
-				if(level_a<=0)	level_a=LEVEL_MIN;
+				if(level_a<LEVEL_MIN)	level_a=LEVEL_MIN;
 				else 	level_a-=LEVEL_STEP;
 			}
 			setLevel_PWMA(level_a);
@@ -407,7 +407,7 @@ void changeBrightness(uint8_t dir)
 			}
 			else	// adj -
 			{
-				if(level_b<=0)	level_b=LEVEL_MIN;
+				if(level_b<LEVEL_MIN)	level_b=LEVEL_MIN;
 				else 	level_b-=LEVEL_STEP;
 			}
 		      setLevel_PWMB(level_b);

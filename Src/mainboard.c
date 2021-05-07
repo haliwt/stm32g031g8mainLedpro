@@ -62,6 +62,7 @@ static void RunCmd(void)
 		break;
 	case 'A':
 		changeBrightness(inputCmd[1]);
+	    cmdType = 'S';
 		break;
 	default:
 		break;

@@ -3,8 +3,8 @@
 #include "main.h"
 
 #define LEVEL_DEFAULT   14 
-#define LEVEL_MAX       20
-#define LEVEL_MIN       0//8
+#define LEVEL_MAX       30
+#define LEVEL_MIN       20
 #define LEVEL_ZERO      0
 #define LEVEL_STEP      6
 #define LEVEL_PWM_STEP     1
