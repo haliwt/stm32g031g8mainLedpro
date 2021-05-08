@@ -362,10 +362,10 @@ void mainTurnOff_TheSecondLedB(void)
 
 static void setLevel_PWMB(uint8_t levelval)
 {
-    //if(mainled.pwmDutyCycle_ch12 <LEVEL_MIN) mainled.pwmDutyCycle_ch12 =LEVEL_MIN;
+    mainled.pwmDutyCycle_ch12 =levelval;
+	if(mainled.pwmDutyCycle_ch12 <LEVEL_MIN) mainled.pwmDutyCycle_ch12 =LEVEL_MIN;
 
-	//if(mainled.pwmDutyCycle_ch12>LEVEL_PWM_MAX)mainled.pwmDutyCycle_ch12=LEVEL_PWM_MAX;
-     mainled.pwmDutyCycle_ch12 =levelval;
+     
 	 MX_TIM1_Init();
 	 HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 }
@@ -380,10 +380,9 @@ static void setLevel_PWMB(uint8_t levelval)
 
 static void setLevel_PWMA(uint8_t levelval)
 {
+    mainled.pwmDutyCycle_ch22 = levelval;
+    if(mainled.pwmDutyCycle_ch22 <LEVEL_MIN) mainled.pwmDutyCycle_ch22=LEVEL_MIN;
 	
-   //if(mainled.pwmDutyCycle_ch22 <LEVEL_MIN) mainled.pwmDutyCycle_ch22=LEVEL_MIN;
-   //if(mainled.pwmDutyCycle_ch22>LEVEL_PWM_MAX) mainled.pwmDutyCycle_ch22=LEVEL_PWM_MAX;
-	mainled.pwmDutyCycle_ch22 = levelval;
 	MX_TIM2_Init();
 	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;  //2.the second turn on Enable
 
