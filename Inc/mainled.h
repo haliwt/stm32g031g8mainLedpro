@@ -6,7 +6,7 @@
 #define LEVEL_MAX       30
 #define LEVEL_MIN       20
 #define LEVEL_ZERO      0
-#define LEVEL_STEP      6
+#define LEVEL_STEP      5
 #define LEVEL_PWM_STEP     1
 #define LEVEL_PWM_MAX      100
 

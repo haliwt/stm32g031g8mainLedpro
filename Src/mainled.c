@@ -45,6 +45,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 	   	
 			case 7://PA2 [0] ---oled "Orange"-{7}
 			    mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
                 mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -58,6 +59,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 4://PA3--[1]----oled menu "Blue2" -{4}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -69,6 +71,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 3: //PA4-[2] -----oled  menu "Blue1" -{3}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -82,6 +85,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 1://PA5-[3]-----oled menu "UV365" {1}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -95,6 +99,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 2: //PA6-[4]-----oled menu "Violet" {2}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -107,6 +112,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 0://PA7[5]---"white" oled {0}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -119,6 +125,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 6: //PB0-[6]----oled menu "Green"--{6}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -131,6 +138,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 5://PB1-[7]----oled "Cyan"--{5}
 				mainled.led_by_a = 1;
+				mainled.led_by_b = 0;
 				mainTurnOff_TheSecondLedB();
 				mainTurnOff_TheFirstLedA();
 				HAL_Delay(20);
@@ -144,6 +152,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 		   //LEDB -The second group 
 		    case 9://PA11[8]-----olde "640"-{9}
 				mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
 				mainTurnOff_TheSecondLedB();
 				HAL_Delay(20);
@@ -155,6 +164,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 0x0B://PA12[9] -----oled "740"--{11}
 				mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
 				mainTurnOff_TheSecondLedB();
 				HAL_Delay(20);
@@ -169,6 +179,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				// temp =0x0A;
 				// HAL_UART_Transmit(&huart1,&temp,1,2);
 				mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
 		
 				mainTurnOff_TheSecondLedB();
@@ -183,6 +194,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				// temp =0x0B;
 				// HAL_UART_Transmit(&huart1,&temp,1,2);
 				mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
 			
 				mainTurnOff_TheSecondLedB();
@@ -195,6 +207,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 0X0C: //[0x0C] ----oled "750"--{12}
 				mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				// temp =0x0C;
 				// HAL_UART_Transmit(&huart1,&temp,1,2);
 				mainTurnOff_TheFirstLedA();
@@ -209,11 +222,13 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 
             case 0x0A://[0x0D]---oled "690"--{0xA}
 			     mainled.led_by_b = 1;
+				 mainled.led_by_a = 0;
                 // HAL_GPIO_WritePin(LEDB6_GPIO_Port,LEDB6_Pin, GPIO_PIN_SET);
                 break;
 
             case 8: // [0xe] -----oled "Red"-{8}
 			    mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				// temp =0x0E;
 				// HAL_UART_Transmit(&huart1,&temp,1,2);
 				mainTurnOff_TheFirstLedA();
@@ -230,6 +245,7 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
 				// temp =0x0F;
 				// HAL_UART_Transmit(&huart1,&temp,1,2);
 				mainled.led_by_b = 1;
+				mainled.led_by_a = 0;
 				mainTurnOff_TheFirstLedA();
 				
 				mainTurnOff_TheSecondLedB();
@@ -346,10 +362,10 @@ void mainTurnOff_TheSecondLedB(void)
 
 static void setLevel_PWMB(uint8_t levelval)
 {
-    if(mainled.pwmDutyCycle_ch12 <LEVEL_MIN) mainled.pwmDutyCycle_ch12 =LEVEL_MIN;
+    //if(mainled.pwmDutyCycle_ch12 <LEVEL_MIN) mainled.pwmDutyCycle_ch12 =LEVEL_MIN;
 
-	if(mainled.pwmDutyCycle_ch12>LEVEL_PWM_MAX)mainled.pwmDutyCycle_ch12=LEVEL_PWM_MAX;
-
+	//if(mainled.pwmDutyCycle_ch12>LEVEL_PWM_MAX)mainled.pwmDutyCycle_ch12=LEVEL_PWM_MAX;
+     mainled.pwmDutyCycle_ch12 =levelval;
 	 MX_TIM1_Init();
 	 HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 }
@@ -365,9 +381,9 @@ static void setLevel_PWMB(uint8_t levelval)
 static void setLevel_PWMA(uint8_t levelval)
 {
 	
-   if(mainled.pwmDutyCycle_ch22 <LEVEL_MIN) mainled.pwmDutyCycle_ch22=LEVEL_MIN;
-   if(mainled.pwmDutyCycle_ch22>LEVEL_PWM_MAX) mainled.pwmDutyCycle_ch22=LEVEL_PWM_MAX;
-	
+   //if(mainled.pwmDutyCycle_ch22 <LEVEL_MIN) mainled.pwmDutyCycle_ch22=LEVEL_MIN;
+   //if(mainled.pwmDutyCycle_ch22>LEVEL_PWM_MAX) mainled.pwmDutyCycle_ch22=LEVEL_PWM_MAX;
+	mainled.pwmDutyCycle_ch22 = levelval;
 	MX_TIM2_Init();
 	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2) ;  //2.the second turn on Enable
 
@@ -385,7 +401,6 @@ void changeBrightness(uint8_t dir)
 	if(hasLedOn)
 	{
 		if(mainled.led_by_a == 1){
-			mainled.led_by_b = 0;
 			if(dir=='1')	// adj +
 			{
 				level_a+=LEVEL_STEP;
@@ -399,7 +414,6 @@ void changeBrightness(uint8_t dir)
 			setLevel_PWMA(level_a);
 		}
 		if(mainled.led_by_b == 1){
-			mainled.led_by_a = 0;
 			if(dir=='1')	// adj +
 			{
 				level_b+=LEVEL_STEP;

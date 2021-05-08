@@ -51,8 +51,6 @@ static void RunCmd(void)
 	switch(cmdType)
 	{
 	case 'S':	//	select led  hex:53
-	    mainled.led_by_a = 0;
-		mainled.led_by_b = 0;
 		LedOnOff(((inputCmd[1]-0x30)*10+inputCmd[2]-0x30),1);//ledCtrl(((inputCmd[1]-0x30)*10+inputCmd[2]-0x30),1);
 		break;
 	case 'C': // 0x43
