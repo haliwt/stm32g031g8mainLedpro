@@ -223,7 +223,8 @@ void LedOnOff(uint8_t ledNum,uint8_t onOff)
             case 0x0A://[0x0D]---oled "690"--{0xA}
 			     mainled.led_by_b = 1;
 				 mainled.led_by_a = 0;
-                // HAL_GPIO_WritePin(LEDB6_GPIO_Port,LEDB6_Pin, GPIO_PIN_SET);
+               
+                 setLevel_PWMB(level_b);//WT.2021.06.23 ADD
                 break;
 
             case 8: // [0xe] -----oled "Red"-{8}
