@@ -37,7 +37,8 @@ uint8_t aRxBuffer[RXBUFFERSIZE];
 int main(void)
 {
   
-  
+    mainled.pwmDutyCycle_ch12 =70; //WT.EDIT 2021.07.09
+    mainled.pwmDutyCycle_ch22 =70;
 	HAL_Init();
 
 
@@ -53,24 +54,13 @@ int main(void)
 	MX_TIM1_Init();
 	HAL_UART_Abort(&huart1);
 	HAL_UART_Receive_IT(&huart1,aRxBuffer,1);
+	
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 		
-	   
+	    HAL_GPIO_WritePin(GPIOA,FAN_Pin,GPIO_PIN_SET); //fan on
         DecodeTestCase();
-	 
-//        {
-//            ledab.left_side = ReadLR_Control();
-//			
-//			 SingleLed_Test() ; //TestMode
-
-//			 HAL_UART_Transmit(&huart1,(uint8_t *)aRxBuffer,8, 10);
-//		 
-//		}
-		
-				
-		
   }
   
 }

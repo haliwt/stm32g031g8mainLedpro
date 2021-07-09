@@ -5,9 +5,9 @@
 
 #define LEVEL_DEFAULT   14 
 #define LEVEL_MAX       80
-#define LEVEL_MIN       80//WT.EDIT 2021.06.18//60 //MinLevel
+#define LEVEL_MIN       20//80//WT.EDIT 2021.06.18//60 //MinLevel
 #define LEVEL_ZERO      0
-#define LEVEL_STEP      30
+#define LEVEL_STEP      10 //30
 #define LEVEL_PWM_STEP     1
 #define LEVEL_PWM_MAX      100
 
